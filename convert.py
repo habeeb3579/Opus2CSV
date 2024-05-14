@@ -42,7 +42,9 @@ def process_csv_mode(wavenumbers, absorbance, params, file_names, args):
             idxs = group['indices']
             sel_absorbance = [absorbance[idx] for idx in idxs]
             #print(f"{[x.shape for x in absorbance]}")
-            df.append(pd.DataFrame(sel_absorbance, columns=common_wvn))
+            df3 = pd.DataFrame(sel_absorbance, columns=common_wvn)
+            df3['File Name'] = [file_names[idx] for idx in idxs]
+            df.append(df3)
             add_params.append(params[idx])
 
     if args.out:
